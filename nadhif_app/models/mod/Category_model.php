@@ -3,8 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Category_model extends CI_Model {
 
-	private $_table = 't_category';
-	private $_column_order = array(null, 'id', 'title', 'seotitle', 'id_parent', 'active', null);
+	private $_table         = 't_category';
+	private $_column_order  = array(null, 'id', 'title', 'seotitle', 'id_parent', 'active', null);
 	private $_column_search = array('id', 'title', 'seotitle', 'id_parent');
 
 	public function __construct() {

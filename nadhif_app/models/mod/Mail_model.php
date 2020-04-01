@@ -3,7 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Mail_model extends CI_Model {
 
-	private $_table = 't_mail';
+	private $_table         = 't_mail';
+	private $_column_order  = array(null, 'id', 'id', 'name', 'subject', 'date', 'active', null);
+	private $_column_search = array('id', 'name', 'email', 'subject ', 'message');
 
 	public function __construct() {
 		parent::__construct();
@@ -89,7 +91,7 @@ class Mail_model extends CI_Model {
 				}
 
 				// last loop
-				if(count($this->column_search_out) - 1 == $i) {
+				if(count($this->column_search) - 1 == $i) {
 					$this->db->group_end(); //close bracket
 				}
 			}

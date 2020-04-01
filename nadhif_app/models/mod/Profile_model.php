@@ -19,7 +19,7 @@ class Profile_model extends CI_Model {
 	public function get_data() {
 		$query = $this->db
 			->select('
-			         t_user.id          AS  user_id,
+		         t_user.id          AS  user_id,
 				     t_user.username    AS  user_username,
 				     t_user.password    AS  user_password,
 				     t_user.email       AS  user_email,

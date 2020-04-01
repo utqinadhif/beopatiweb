@@ -7,7 +7,6 @@ class Dashboard_model extends CI_Model {
 		parent::__construct();
 	}
 
-
 	public function card($param) {
 		$result = '';
 		if($param == 'post') {$result = $this->db->select('id')->get('t_post')->num_rows();}

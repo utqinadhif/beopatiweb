@@ -3,8 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pages_model extends CI_Model {
 
-	private $_table = 't_pages';
-	private $_column_order = array(null, 'id', 'title','seotitle','active', null);
+	private $_table         = 't_pages';
+	private $_column_order  = array(null, 'id', 'title','seotitle','active', null);
 	private $_column_search = array('id', 'title', 'active');
 
 	public function __construct() {
