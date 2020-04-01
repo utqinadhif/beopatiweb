@@ -1,7 +1,7 @@
 <?php
-$f_application = 'l-app';
-$f_content     = 'l-content';
-$f_system      = 'l-system';
+$f_application = 'nadhif_app';
+$f_content     = 'nadhif_content';
+$f_system      = 'nadhif_system';
 
 $d_s = DIRECTORY_SEPARATOR;
 define('ENVIRONMENT', 'production');
