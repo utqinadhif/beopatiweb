@@ -1,5 +1,5 @@
-/*app/config/database.php
-/*content/thumbs/*
-/*content/temp/*
-/*content/uploads/*
+/**/config/database.php
+/**/thumbs/*
+/**/temp/*
+/**/uploads/*
 /.htaccess
