@@ -92,7 +92,7 @@ switch (ENVIRONMENT)
  * This variable must contain the name of your "system" directory.
  * Set the path if it is not in the same directory as this file.
 */
-$system_path = 'l-system';
+$system_path = 'nadhif_system';
 
 /*
  *---------------------------------------------------------------
@@ -109,7 +109,7 @@ $system_path = 'l-system';
  *
  * NO TRAILING SLASH!
 */
-$application_folder = 'l-app';
+$application_folder = 'nadhif_app';
 
 /*
  *---------------------------------------------------------------
@@ -131,21 +131,21 @@ $view_folder = '';
  * ADMINISTRATOR DIRECTORY NAME
  *---------------------------------------------------------------
 */
-$admin_folder = 'l-admin';
+$admin_folder = 'nadhif_admin';
 
 /*
  *---------------------------------------------------------------
  * WEB DIRECTORY NAME
  *---------------------------------------------------------------
 */
-$web_folder = 'l-web';
+$web_folder = 'nadhif_web';
 
 /*
  *---------------------------------------------------------------
  * CONTENT DIRECTORY NAME
  *---------------------------------------------------------------
 */
-$content_folder = 'l-content';
+$content_folder = 'nadhif_content';
 
 /*
  * --------------------------------------------------------------------
