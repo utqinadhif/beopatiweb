@@ -6,3 +6,6 @@
 /*content/uploads/*
 !index.html
 /.htaccess
+/*app/logs/*
+!.htaccess
+!index.html
