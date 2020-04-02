@@ -95,40 +95,52 @@
 	</div>
 	<!--/ Author Info -->
 	<!-- Posts navigation -->
-	<div class="post-inner clearfix mb-2">
-		<div class="post-np">
-			<div class="row">
-				<div class="col-sm-6 text-left">
-					<a href="<?php echo $prev_post['url']?>" title="Previous Post" class="btn btn-light">&lArr; Previous</a>
-					<div class="post-np-title"><small><a href="<?php echo $prev_post['url']?>" title="<?php echo $prev_post['title']?>" class="text-dark"><?php echo cut($prev_post['title'],100)?>...</a></small></div>
-				</div>
-				<div class="col-sm-6 text-right">
-					<a href="<?php echo $next_post['url']?>" title="Next Post" class="btn btn-light">Next &rArr;</a>
-					<div class="post-np-title"><small><a href="<?php echo $next_post['url']?>" title="<?php echo $next_post['title']?>" class="text-dark"><?php echo cut($next_post['title'],100)?>...</a></small></div>
+	<?php
+	if(!empty($prev_post)) {
+		?>
+		<div class="post-inner clearfix mb-2">
+			<div class="post-np">
+				<div class="row">
+					<div class="col-sm-6 text-left">
+						<a href="<?php echo $prev_post['url']?>" title="Previous Post" class="btn btn-light">&lArr; Previous</a>
+						<div class="post-np-title"><small><a href="<?php echo $prev_post['url']?>" title="<?php echo $prev_post['title']?>" class="text-dark"><?php echo cut($prev_post['title'],100)?>...</a></small></div>
+					</div>
+					<div class="col-sm-6 text-right">
+						<a href="<?php echo $next_post['url']?>" title="Next Post" class="btn btn-light">Next &rArr;</a>
+						<div class="post-np-title"><small><a href="<?php echo $next_post['url']?>" title="<?php echo $next_post['title']?>" class="text-dark"><?php echo cut($next_post['title'],100)?>...</a></small></div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+		<?php
+	}
+	?>
 	<!--/ Posts navigation -->
 	<!-- related posts -->
-	<div class="post-head">
-		<h4>Related Posts</h4>
-	</div>
-	<div class="post-inner clearfix mb-2">
-		<div class="related-posts clearfix">
-			<ul>
-			<?php
-			$related_posts = $this->CI->post_model->related_post($result_post['tag'], $result_post['post_id'], 4);
+	<?php
+	$related_posts = $this->CI->post_model->related_post($result_post['tag'], $result_post['post_id'], 4);
 
-			foreach($related_posts as $res_relatedpost) {
-				?>
-				<li><a href="<?php echo post_url($res_relatedpost['seotitle']);?>" title="<?php echo $res_relatedpost['title'];?>"><?php echo $res_relatedpost['title'];?></a></li>
-				<?php
-			}
-			?>
-			</ul>
+	if(!empty($related_posts)) {
+		?>
+		<div class="post-head">
+			<h4>Related Posts</h4>
 		</div>
-	</div>
+		<div class="post-inner clearfix mb-2">
+			<div class="related-posts clearfix">
+				<ul>
+				<?php
+				foreach($related_posts as $res_relatedpost) {
+					?>
+					<li><a href="<?php echo post_url($res_relatedpost['seotitle']);?>" title="<?php echo $res_relatedpost['title'];?>"><?php echo $res_relatedpost['title'];?></a></li>
+					<?php
+				}
+				?>
+				</ul>
+			</div>
+		</div>
+		<?php
+	}
+	?>
 	<!--/ related posts -->
 	<?php
 	if(get_setting('post_comment')=='Y' && $result_post['post_comment']=='Y') {
@@ -145,75 +157,81 @@
 						->where('id_post', $result_post['post_id'])
 						->where('active != "N"')
 						->where('parent = "0"', NULL, FALSE)
-						->get('t_comment');
+						->get('t_comment')->result_array();
 
-					foreach($data_comments->result_array() as $comment) {
-						$usersa = $this->CI->db
-							->select('id,photo')
-							->where('id', $comment['id_user'])
-							->get('t_user')
-							->row_array();
-						?>						
-						<div class="media mt-2">
-							<img src="<?php echo user_photo($usersa['photo']);?>" class="mr-3" width="45">
-							<div class="media-body">
-								<h5 class="comment-name mt-0">
-									<?php echo $comment['name'];?> 
-									<small class="text-muted ml-3"><?php echo ci_date($comment['date'],'d M Y | h:i A');?></small>
-								</h5>
-								<div class="comment-body mb-5">
-									<?php 
-									if($comment['active'] == 'X') {
-										echo '<i class="text-danger">****</i>';
-									} else {
-										echo '<p>'.auto_link($comment['comment']).'</p>';
-										echo '<a href="#form-comment" class="reply_comment" data-parent="'.encrypt($comment['id']).'">Reply</a>';
-									}
-									?>
-								</div>
-								<!-- child -->
-								<?php
-								if($comment['active'] != 'X') {
-									$child_comments = $this->CI->db
-										->where('parent', $comment['id'])
-										->where('active != "N"')
-										->get('t_comment');
-
-									foreach($child_comments->result_array() as $res_child) {
-										$users_rep = $this->CI->db
-											->select('id,photo')
-											->where('id', $res_child['id_user'])
-											->where('active', 'Y')
-											->get('t_user')
-											->row_array();
+					if(!empty($data_comments)) {
+						foreach($data_comments as $comment) {
+							$usersa = $this->CI->db
+								->select('id,photo')
+								->where('id', $comment['id_user'])
+								->get('t_user')
+								->row_array();
+							?>						
+							<div class="media mt-2">
+								<img src="<?php echo user_photo($usersa['photo']);?>" class="mr-3" width="45">
+								<div class="media-body">
+									<h5 class="comment-name mt-0">
+										<?php echo $comment['name'];?> 
+										<small class="text-muted ml-3"><?php echo ci_date($comment['date'],'d M Y | h:i A');?></small>
+									</h5>
+									<div class="comment-body mb-5">
+										<?php 
+										if($comment['active'] == 'X') {
+											echo '<i class="text-danger">****</i>';
+										} else {
+											echo '<p>'.auto_link($comment['comment']).'</p>';
+											echo '<a href="#form-comment" class="reply_comment" data-parent="'.encrypt($comment['id']).'">Reply</a>';
+										}
 										?>
-										<div class="media mt-4 mb-5">
-											<img src="<?php echo user_photo($users_rep['photo']);?>" class="mr-3" width="45">
-											<div class="media-body">
-												<h5 class="comment-name mt-0">
-													<?php echo $res_child['name'];?> 
-													<small class="text-muted ml-3"><?php echo ci_date($res_child['date'],'d M Y | h:i A');?></small>
-												</h5>
-												<div class="comment-body">
-													<?php 
-														if($res_child['active'] == 'X') {
-															echo '<i class="text-danger">****</i>';
-														} else {
-															echo '<p>'.auto_link($res_child['comment']).'</p>';
-															echo '<a href="#form-comment" class="reply_comment" data-parent="'.encrypt($comment['id']).'">Reply</a>';
-														}
-													?>
+									</div>
+									<!-- child -->
+									<?php
+									if($comment['active'] != 'X') {
+										$child_comments = $this->CI->db
+											->where('parent', $comment['id'])
+											->where('active != "N"')
+											->get('t_comment');
+
+										foreach($child_comments->result_array() as $res_child) {
+											$users_rep = $this->CI->db
+												->select('id,photo')
+												->where('id', $res_child['id_user'])
+												->where('active', 'Y')
+												->get('t_user')
+												->row_array();
+											?>
+											<div class="media mt-4 mb-5">
+												<img src="<?php echo user_photo($users_rep['photo']);?>" class="mr-3" width="45">
+												<div class="media-body">
+													<h5 class="comment-name mt-0">
+														<?php echo $res_child['name'];?> 
+														<small class="text-muted ml-3"><?php echo ci_date($res_child['date'],'d M Y | h:i A');?></small>
+													</h5>
+													<div class="comment-body">
+														<?php 
+															if($res_child['active'] == 'X') {
+																echo '<i class="text-danger">****</i>';
+															} else {
+																echo '<p>'.auto_link($res_child['comment']).'</p>';
+																echo '<a href="#form-comment" class="reply_comment" data-parent="'.encrypt($comment['id']).'">Reply</a>';
+															}
+														?>
+													</div>
 												</div>
 											</div>
-										</div>
-										<?php 
+											<?php 
+										}
 									}
-								}
-								?>
-								<!--/ child -->
+									?>
+									<!--/ child -->
+								</div>
 							</div>
-						</div>
-						<?php 
+							<?php 
+						}
+					} else {
+						?>
+						Tuliskan tanggapanmu pada kolom komentar...
+						<?php
 					}
 					?>
 				</div>

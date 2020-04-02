@@ -115,7 +115,7 @@
 						->get('t_post')
 						->num_rows();
 					
-					if(is_null($row_scategory['id']) || $num_spost == 0 ) continue;
+					if(empty($row_scategory['id']) || $num_spost == 0 ) continue;
 					?>
 					<li class="nav-item">
 						<a href="<?php echo site_url('category/'.$row_scategory['seotitle']);?>" class="nav-link"><?php echo $row_scategory['title'];?> <small class="pull-right"><?php echo $num_spost;?></small></a>
