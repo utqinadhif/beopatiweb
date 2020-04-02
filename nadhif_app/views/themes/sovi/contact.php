@@ -31,21 +31,17 @@
 				</div>
 				<div class="col-md-8">
 					<?php echo form_open('','class="form-contact"');?>
-					<div class="row">
-						<div class="col-md-8">
-							<div class="form-group">
-								<label>Name <span class="text-danger">*</span></label>
-								<input type="text" name="name" class="form-control"/>
-							</div>
-							<div class="form-group">
-								<label>Email <span class="text-danger">*</span></label>
-								<input type="email" name="email" class="form-control"/>
-							</div>
-							<div class="form-group">
-								<label>Subject <span class="text-danger">*</span></label>
-								<input type="text" name="subject" class="form-control"/>
-							</div>
-						</div>
+					<div class="form-group">
+						<label>Name <span class="text-danger">*</span></label>
+						<input type="text" name="name" class="form-control"/>
+					</div>
+					<div class="form-group">
+						<label>Email <span class="text-danger">*</span></label>
+						<input type="email" name="email" class="form-control"/>
+					</div>
+					<div class="form-group">
+						<label>Subject <span class="text-danger">*</span></label>
+						<input type="text" name="subject" class="form-control"/>
 					</div>
 					<div class="form-group">
 						<label>Message <span class="text-danger">*</span></label>
