@@ -18,7 +18,6 @@
 			<button type="button" class="btn btn-sm pd-x-15 btn-white btn-uppercase" onclick="window.location='<?php echo admin_url($this->mod.'/add');?>'"><i data-feather="plus" class="mr-2"></i><?php echo lang_line('button_add');?></button>
 		</div>
 	</div>
-
 	<div class="card">
 		<div class="table-responsive">
 			<div class="card-body">

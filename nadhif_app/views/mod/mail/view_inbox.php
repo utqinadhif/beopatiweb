@@ -21,8 +21,8 @@
 			<button type="button" onclick="location.href='<?php echo admin_url($this->mod.'/outbox');?>'" class="btn btn-white"><i data-feather="external-link" class="wd-16"></i><span class="d-none d-lg-inline-block ml-2"><?php echo lang_line('button_outbox');?></span></button>
 			<button type="button" onclick="location.href='<?php echo admin_url($this->mod.'/write');?>'" class="btn btn-white"><i data-feather="edit-3" class="wd-16"></i><span class="d-none d-lg-inline-block ml-2"><?php echo lang_line('button_write');?></span></button>
 		</div>
-		<div class="card-body">
-			<div class="table-responsive">
+		<div class="table-responsive">
+			<div class="card-body">
 				<table id="DataTable" class="table table-striped table-bordered table-datatable">
 					<thead>
 						<tr>

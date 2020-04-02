@@ -35,6 +35,7 @@ class Dashboard extends Backend_Controller {
 		for ($i = $range; $i >= 0; $i--) {
 			if($i == 0) {
 				$visitorstemp = $this->db
+					->select('ip')
 					->where('date', date('Y-m-d'))
 					->group_by('ip')
 					->get('t_visitor')

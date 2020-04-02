@@ -145,30 +145,32 @@ $(function() {
 	};
 
 
-	var _CodeEditor = CodeMirror.fromTextArea(document.getElementById("code_metasocial"), {
-		mode: "php",
-		extraKeys: {
-			"Ctrl-J": "toMatchingTag",
-			"F11": function(cm) {
-				cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+	if(document.getElementById("code_metasocial") != null) {
+		var _CodeEditor = CodeMirror.fromTextArea(document.getElementById("code_metasocial"), {
+			mode: "php",
+			extraKeys: {
+				"Ctrl-J": "toMatchingTag",
+				"F11": function(cm) {
+					cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+				},
+				"Esc": function(cm) {
+					if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+				},
+				"Ctrl-Space": "autocomplete"
 			},
-			"Esc": function(cm) {
-				if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
-			},
-			"Ctrl-Space": "autocomplete"
-		},
-		theme: "github",
-		lineWrapping: true,
-		cursorBlinkRate: 200,
-		autocorrect: true,
-		autofocus: true,
-		lineNumbers: true,
-		gutters: ["CodeMirror-linenumbers"],
-		styleActiveLine: true,
-		autoCloseBrackets: true,
-		autoCloseTags: true,
-		scrollbarStyle:"simple",
-	});
+			theme: "github",
+			lineWrapping: true,
+			cursorBlinkRate: 200,
+			autocorrect: true,
+			autofocus: true,
+			lineNumbers: true,
+			gutters: ["CodeMirror-linenumbers"],
+			styleActiveLine: true,
+			autoCloseBrackets: true,
+			autoCloseTags: true,
+			scrollbarStyle:"simple",
+		});
+	}
 
 	$('.nav-tabs a').on('shown.bs.tab', function() {
 		_CodeEditor.refresh();
