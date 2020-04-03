@@ -81,6 +81,10 @@
 	}
 	?>
 	<!--/ content paging -->
+	<div class="post-head mt-2">
+		<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5e86b44bdf2bcd00118d1eab&product=inline-share-buttons&cms=sop' async='async'></script>
+		<div class="sharethis-inline-share-buttons"></div>
+	</div>
 	<!-- Author Info -->
 	<div class="post-head mt-2">
 		<h4>Editor : <small class="tx-capitalize text-primary"><?php echo $result_post['author_name']?></small></h4>
